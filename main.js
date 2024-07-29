@@ -2,7 +2,7 @@ import './style.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
-import { multiplyBy2 } from './closure.js'
+import { closure } from './closure.js'
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -22,6 +22,16 @@ document.querySelector('#app').innerHTML = `
     </p>
   </div>
 `
-const result = multiplyBy2(10);
-document.querySelector('.multiply').innerHTML = `10 multiplied by 2 is ${result}`
+closure();
 setupCounter(document.querySelector('#counter'))
+
+function outer() {
+  let counter = 0;
+  function incrementCounter() {
+    counter++;
+  }
+  return incrementCounter();
+}
+
+  const myNewFunction = outer();
+  myNewFunction()
